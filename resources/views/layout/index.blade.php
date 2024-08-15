@@ -42,7 +42,7 @@
     <!-- loader END -->
 
     <!-- inicio sidebar aquí -->
-    @yield('sidebar')
+    @include('layout.sidebar')
     <!-- fin sidebar aquí -->
 
     <main class="main-content">
@@ -52,7 +52,7 @@
         <!-- fin contenido aquí -->
 
         <!-- Footer Section Start -->
-        @yield('footer')
+        @include('layout.footer')
         <!-- Footer Section End -->
     </main>
     <a class="btn btn-fixed-end btn-warning btn-icon btn-setting" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" role="button" aria-controls="offcanvasExample">
@@ -274,6 +274,9 @@
 
     <!-- App Script -->
     <script src="../js/hope-ui.js" defer></script>
+
+    <!-- Scripts de páginas aquí -->
+    @yield('script-page')
 
 </body>
 

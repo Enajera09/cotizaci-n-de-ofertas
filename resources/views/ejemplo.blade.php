@@ -1,6 +1,4 @@
 @extends('layout.index')
-@extends('layout.sidebar')
-@extends('layout.footer')
 
 @section('contenido')
 @include('layout.nav')

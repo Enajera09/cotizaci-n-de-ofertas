@@ -1,4 +1,3 @@
-@section('sidebar')
 <aside class="sidebar sidebar-default sidebar-white sidebar-base navs-rounded-all ">
     <div class="sidebar-header d-flex align-items-center justify-content-start">
         <a href="/" class="navbar-brand">
@@ -26,7 +25,7 @@
             </div>
             <!--logo End-->
 
-            <h6 class="logo-title">Nombre del proyecto</h6>
+            <h6 class="logo-title">Gestión de cotizaciones</h6>
         </a>
         <div class="sidebar-toggle" data-toggle="sidebar" data-active="true">
             <i class="icon">
@@ -481,4 +480,3 @@
     </div>
     <div class="sidebar-footer"></div>
 </aside>
-@endsection
