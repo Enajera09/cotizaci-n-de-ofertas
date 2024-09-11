@@ -245,35 +245,35 @@
     </div>
 
     <!-- Library Bundle Script -->
-    <script src="../js/core/libs.min.js"></script>
+    <script src="{{asset('js/core/libs.min.js')}}"></script>
 
     <!-- External Library Bundle Script -->
-    <script src="../js/core/external.min.js"></script>
+    <script src="{{asset('js/core/external.min.js')}}"></script>
 
     <!-- Widgetchart Script -->
-    <script src="../js/charts/widgetcharts.js"></script>
+    <script src="{{asset('js/charts/widgetcharts.js')}}"></script>
 
     <!-- mapchart Script -->
-    <script src="../js/charts/vectore-chart.js"></script>
-    <script src="../js/charts/dashboard.js"></script>
+    <script src="{{asset('js/charts/vectore-chart.js')}}"></script>
+    <script src="{{asset('js/charts/dashboard.js')}}"></script>
 
     <!-- fslightbox Script -->
-    <script src="../js/plugins/fslightbox.js"></script>
+    <script src="{{asset('js/plugins/fslightbox.js')}}"></script>
 
     <!-- Settings Script -->
-    <script src="../js/plugins/setting.js"></script>
+    <script src="{{asset('js/plugins/setting.js')}}"></script>
 
     <!-- Slider-tab Script -->
-    <script src="../js/plugins/slider-tabs.js"></script>
+    <script src="{{asset('js/plugins/slider-tabs.js')}}"></script>
 
     <!-- Form Wizard Script -->
-    <script src="../js/plugins/form-wizard.js"></script>
+    <script src="{{asset('js/plugins/form-wizard.js')}}"></script>
 
     <!-- AOS Animation Plugin-->
-    <script src="../vendor/aos/dist/aos.js"></script>
+    <script src="{{asset('vendor/aos/dist/aos.js')}}"></script>
 
     <!-- App Script -->
-    <script src="../js/hope-ui.js" defer></script>
+    <script src="{{asset('js/hope-ui.js')}}" defer></script>
 
     <!-- Scripts de páginas aquí -->
     @yield('script-page')

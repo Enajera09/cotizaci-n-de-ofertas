@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,10 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/', function () {
-    return view('index');
+    return view('dashboard.index');
 });
 
-Route::get('/pagina-ejemplo', function(){
-    return view('ejemplo');
+
+
+Route::prefix('pagina')->group(function () {
+    Route::get('index', [ProductoController::class, 'index']);
+    Route::get('form', [ProductoController::class, 'create']);
+
+    Route::post('crearProducto', [ProductoController::class, 'store']);
+    Route::delete('eliminarProducto/{$id}', [ProductoController::class, 'destroy']);
 });
