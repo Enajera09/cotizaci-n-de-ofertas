@@ -4,7 +4,7 @@
 @include('layout.nav')
 
 <h2 class="mt-4">
-    <center>Datos generales</center>
+    <center>Datos generales prueba</center>
 </h2>
 <div class="row mt-4">
     <div class="col-lg-3 col-md-6">
