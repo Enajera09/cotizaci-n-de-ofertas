@@ -4,31 +4,6 @@
 @include('layout.nav')
 
 <div class="accordion  mt-4 " id="accordionExample">
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Borrar registro</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    ¿Estás seguro de eliminar el producto?
-                </div>
-                <div class="modal-footer">
-                    <form id="delete-form" method="POST" action="">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Sí</button>
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Fin Modal -->
 
     <div class="accordion-item bg-white">
         <h2 class="accordion-header" id="headingOne">
@@ -50,7 +25,7 @@
                         <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);"
                             aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item active" aria-current="page">Productos</li>
+                                <li class="breadcrumb-item {{ Request::is('pagina/index') ? 'active' : '' }}" aria-current="page">Productos</li>
                                 <li class="breadcrumb-item"><a href="/pagina/form">Agregar</a></li>
                             </ol>
                         </nav>
@@ -68,19 +43,19 @@
 
                 </div>
 
-                <form action="" method="">
+                <form action="index" method="get" id="filter-form">
                     <div class="row mb-3">
                         <div class="col">
                             <label>Código</label>
-                            <input type="text" class="form-control" placeholder="Código">
+                            <input type="text" class="form-control" name="codigo" placeholder="Código">
                         </div>
                         <div class="col">
                             <label>Nombre</label>
-                            <input type="text" class="form-control" placeholder="Nombre">
+                            <input type="text" class="form-control" name="nombre" placeholder="Nombre">
                         </div>
                     </div>
                     <div class="text-end mb-3">
-                        <button type="submit" class="btn btn-primary ms-auto btn-sm d-flex align-items-center">
+                        <button type="submit" class="btn btn-primary ms-auto btn-sm d-flex align-items-center" id="filter-button">
                             <svg class="icon-22 me-2" width="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M10.33 16.5928H4.0293" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                 <path d="M13.1406 6.90042H19.4413" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -139,17 +114,34 @@
                                     <td>{{$producto->proveedor}}</td>
                                     <td>{{$producto->fecha}}</td>
                                     <td>
-                                        <a href="" title="Editar"><svg class="icon-32" width="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path opacity="0.4" d="M19.9927 18.9534H14.2984C13.7429 18.9534 13.291 19.4124 13.291 19.9767C13.291 20.5422 13.7429 21.0001 14.2984 21.0001H19.9927C20.5483 21.0001 21.0001 20.5422 21.0001 19.9767C21.0001 19.4124 20.5483 18.9534 19.9927 18.9534Z" fill="currentColor"></path>
-                                                <path d="M10.309 6.90385L15.7049 11.2639C15.835 11.3682 15.8573 11.5596 15.7557 11.6929L9.35874 20.0282C8.95662 20.5431 8.36402 20.8344 7.72908 20.8452L4.23696 20.8882C4.05071 20.8903 3.88775 20.7613 3.84542 20.5764L3.05175 17.1258C2.91419 16.4915 3.05175 15.8358 3.45388 15.3306L9.88256 6.95545C9.98627 6.82108 10.1778 6.79743 10.309 6.90385Z" fill="currentColor"></path>
-                                                <path opacity="0.4" d="M18.1208 8.66544L17.0806 9.96401C16.9758 10.0962 16.7874 10.1177 16.6573 10.0124C15.3927 8.98901 12.1545 6.36285 11.2561 5.63509C11.1249 5.52759 11.1069 5.33625 11.2127 5.20295L12.2159 3.95706C13.126 2.78534 14.7133 2.67784 15.9938 3.69906L17.4647 4.87078C18.0679 5.34377 18.47 5.96726 18.6076 6.62299C18.7663 7.3443 18.597 8.0527 18.1208 8.66544Z" fill="currentColor"></path>
-                                            </svg></a>
-                                        <a href="#" type="submit" data-bs-toggle="modal" data-id="{{ $producto->id }}" data-bs-target="#exampleModalCenter">
-                                            <svg class="icon-32" width="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path opacity="0.4" d="M16.34 1.99976H7.67C4.28 1.99976 2 4.37976 2 7.91976V16.0898C2 19.6198 4.28 21.9998 7.67 21.9998H16.34C19.73 21.9998 22 19.6198 22 16.0898V7.91976C22 4.37976 19.73 1.99976 16.34 1.99976Z" fill="currentColor"></path>
-                                                <path d="M15.0158 13.7703L13.2368 11.9923L15.0148 10.2143C15.3568 9.87326 15.3568 9.31826 15.0148 8.97726C14.6728 8.63326 14.1198 8.63426 13.7778 8.97626L11.9988 10.7543L10.2198 8.97426C9.87782 8.63226 9.32382 8.63426 8.98182 8.97426C8.64082 9.31626 8.64082 9.87126 8.98182 10.2123L10.7618 11.9923L8.98582 13.7673C8.64382 14.1093 8.64382 14.6643 8.98582 15.0043C9.15682 15.1763 9.37982 15.2613 9.60382 15.2613C9.82882 15.2613 10.0518 15.1763 10.2228 15.0053L11.9988 13.2293L13.7788 15.0083C13.9498 15.1793 14.1728 15.2643 14.3968 15.2643C14.6208 15.2643 14.8448 15.1783 15.0158 15.0083C15.3578 14.6663 15.3578 14.1123 15.0158 13.7703Z" fill="currentColor"></path>
-                                            </svg>
-                                        </a>
+                                        <a class="bi bi-pencil-fill" href="actualizarProducto/{{$producto->id}}/edit" title="Editar" style="font-size: 1.5rem;"></a>
+
+                                        <!-- Botón para abrir el modal de confirmación -->
+                                        <a class="bi bi-trash3-fill text-danger" href="" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal{{ $producto->id }}" style="font-size: 1.5rem;" title="Eliminar"></a>
+
+                                        <!-- Modal de Confirmación para cada producto -->
+                                        <div class="modal fade" id="confirmDeleteModal{{ $producto->id }}" tabindex="-1" aria-labelledby="confirmDeleteModalLabel{{ $producto->id }}" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="confirmDeleteModalLabel{{ $producto->id }}">Confirmar Eliminación</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        ¿Estás seguro de que deseas eliminar este producto?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <form method="post" action="eliminarProducto/{{$producto->id}}">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Fin Modal -->
                                     </td>
                                 </tr>
                                 @endforeach
@@ -161,4 +153,33 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('script-page')
+
+<script>
+    $(document).ready(function() {
+        $('#filter-button').click(function() {
+            // Evitamos que la página se recargue
+            event.preventDefault();
+
+            // Obtenemos los dato del formulario
+            var formData = $('#filter-form').serialize();
+
+            $.ajax({
+                url: "index",
+                method: 'GET',
+                data: formData,
+                success: function(response) {
+                    // Reemplazar la tabla con los nuevos datos
+                    $('tbody').html($(response).find('tbody').html());
+                },
+                error: function(xhr, status, error) {
+                    console.error("Ocurrió un error: " + error);
+                }
+            });
+        });
+    });
+</script>
+
 @endsection

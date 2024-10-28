@@ -24,7 +24,10 @@ Route::get('/', function () {
 Route::prefix('pagina')->group(function () {
     Route::get('index', [ProductoController::class, 'index']);
     Route::get('form', [ProductoController::class, 'create']);
+    Route::get('actualizarProducto/{id}/edit', [ProductoController::class, 'edit']);
 
     Route::post('crearProducto', [ProductoController::class, 'store']);
-    Route::delete('eliminarProducto/{$id}', [ProductoController::class, 'destroy']);
+    Route::put('actualizarProducto/{id}', [ProductoController::class, 'update']);
+    Route::delete('eliminarProducto/{id}', [ProductoController::class, 'destroy']);
+
 });
