@@ -18,9 +18,9 @@ return new class extends Migration
             $table->decimal('precio');
             $table->integer('stock');
             $table->text('descripcion');
-            $table->string('proveedor');
+            $table->unsignedBigInteger('proveedor_id');
+            $table->foreign('proveedor_id')->references('id')->on('proveedores')->onDelete('cascade');
             $table->date('fecha');
-            $table->timestamps();
         });
     }
 

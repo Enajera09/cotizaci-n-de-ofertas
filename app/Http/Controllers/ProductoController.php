@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Producto;
-use Illuminate\Database\Eloquent\Builder; // Asegúrate de que esta línea esté correcta
+use Illuminate\Database\Eloquent\Builder; 
 
 
 use function PHPUnit\Framework\fileExists;

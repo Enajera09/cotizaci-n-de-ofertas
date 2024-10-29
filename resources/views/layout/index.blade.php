@@ -35,6 +35,8 @@
 
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
+    
+
 </head>
 
 <body class="  ">
@@ -281,6 +283,7 @@
     <script src="{{asset('js/hope-ui.js')}}" defer></script>
 
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    
 
     <!-- Scripts de páginas aquí -->
     @yield('script-page')
