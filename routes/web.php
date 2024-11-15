@@ -20,6 +20,10 @@ Route::get('/', function () {
     return view('dashboard.index');
 });
 
+Route::prefix('inicio')->group(function () {
+    Route::get('index', [GestionCotizacionController::class, 'index']);
+});
+
 
 Route::prefix('pagina')->group(function () {
     Route::get('index', [ProductoController::class, 'index']);
@@ -28,8 +32,4 @@ Route::prefix('pagina')->group(function () {
     Route::post('crearProducto', [ProductoController::class, 'store']);
     Route::put('actualizarProducto/{id}', [ProductoController::class, 'update']);
     Route::delete('eliminarProducto/{id}', [ProductoController::class, 'destroy']);
-});
-
-Route::prefix('inicio')->group(function () {
-    Route::get('index', [GestionCotizacionController::class, 'index']);
 });

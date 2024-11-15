@@ -19,8 +19,8 @@ return new class extends Migration
             $table->decimal('valor_unitario', 10, 2);
             $table->decimal('total', 10, 2);
 
-            $table->foreign('cotizacion_id')->references('id')->on('cotizaciones')->onDelete('cascade');
-            $table->foreign('producto_id')->references('id')->on('productos')->onDelete('cascade');
+            $table->foreign('cotizacion_id')->references('id')->on('cotizaciones')->onDelete('restrict');
+            $table->foreign('producto_id')->references('id')->on('productos')->onDelete('restrict');
         });
     }
 

@@ -111,7 +111,7 @@
                                     <td>{{$producto->precio}}</td>
                                     <td>{{$producto->stock}}</td>
                                     <td>{{$producto->descripcion}}</td>
-                                    <td>{{$producto->proveedor}}</td>
+                                    <td>{{$producto->proveedores->nombre}}</td>
                                     <td>{{$producto->fecha}}</td>
                                     <td>
                                         <a class="bi bi-pencil-fill" href="actualizarProducto/{{$producto->id}}/edit" title="Editar" style="font-size: 1.5rem;"></a>

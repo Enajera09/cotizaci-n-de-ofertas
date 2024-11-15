@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('stock');
             $table->text('descripcion');
             $table->unsignedBigInteger('proveedor_id');
-            $table->foreign('proveedor_id')->references('id')->on('proveedores')->onDelete('cascade');
+            $table->foreign('proveedor_id')->references('id')->on('proveedores')->onDelete('restrict');
             $table->date('fecha');
         });
     }

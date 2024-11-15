@@ -31,7 +31,7 @@
 
             <div class="row align-items-start">
                 <div class="col-md-6">
-                <img src="{{ asset('productosIMG/' . $producto->imagen) }}" alt="Imagen del producto" class="img-fluid img-thumbnail mb-2" style="object-fit: cover; width: 100%; height: 100%;">
+                    <img src="{{ asset('productosIMG/' . $producto->imagen) }}" alt="Imagen del producto" class="img-fluid img-thumbnail mb-2" style="object-fit: cover; width: 100%; height: 100%;">
 
                 </div>
                 <div class="col-md-6">
@@ -57,13 +57,10 @@
                     </div>
                     <div class="mb-3">
                         <label class="h6" for="proveedor">Proveedor</label>
-                        <select class="form-select form-select mb-3" aria-label=".form-select-lg example" name="proveedor" id="selectProveedor" required>
-                            <option selected="">Seleccionar</option>
-                            <option value="Proveedor 1">Proveedor 1</option>
-                            <option value="Proveedor 2">Proveedor 2</option>
-                            <option value="Proveedor 3">Proveedor 3</option>
+                        <select class="form-select form-select mb-3" aria-label=".form-select-lg example" name="proveedor" id="SelectProveedor" required>
                         </select>
                     </div>
+
                     <div class="mb-3">
                         <label class="h6" for="fecha">Fecha</label>
                         <input type="date" class="form-control date_flatpicker" placeholder="Date Picker" name="fecha" value="{{ old('fecha', $producto->fecha) }}" required>
@@ -81,4 +78,27 @@
         </form>
     </div>
 </div>
+@endsection
+
+@section('script-page')
+
+<script>
+    $(document).ready(function() {
+        var data = <?= json_encode($proveedores) ?>
+
+        const response = data.map((item) => ({
+            id: item.id,
+            text: item.nombre,
+            selected: true
+        }))
+
+        $("#SelectProveedor").select2({
+            data: response,
+            placeholder: "Seleccione una opción",
+            allowClear: true,
+
+        })
+    });
+</script>
+
 @endsection

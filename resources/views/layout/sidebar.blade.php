@@ -75,7 +75,7 @@
                 <li class="nav-item">
                     <a class="nav-link {{ Request::is('inicio/index') ? 'active' : '' }}" aria-current="page" href="/inicio/index">
                         <i class="bi bi-clipboard2-fill">
-                            <span class="item-name">Gestionar cotizaciones</span>
+                            <span class="item-name">Gestionar cotización</span>
                         </i>
                     </a>
                 </li>

@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Producto;
-use Illuminate\Database\Eloquent\Builder; 
-
+use App\Models\Proveedores;
+use Illuminate\Database\Eloquent\Builder;
 
 use function PHPUnit\Framework\fileExists;
 
@@ -20,7 +20,7 @@ class ProductoController extends Controller
         $codigo = $request->input('codigo');
         $nombre = $request->input('nombre');
 
-        $productos = $this->filtroBase($codigo, $nombre);
+        $productos = $this->filtroBase($codigo, $nombre)->with('proveedores')->get();
 
         $data = [
             'productos' => $productos,
@@ -35,12 +35,13 @@ class ProductoController extends Controller
      */
     public function create()
     {
-
         $productos = Producto::all(['id', 'nombre']);
-        $data = [
-            'productos' => $productos
-        ];
+        $proveedores = Proveedores::all(['id', 'nombre']);
 
+        $data = [
+            'productos' => $productos,
+            'proveedores' => $proveedores
+        ];
 
         return view('producto.Form', $data);
     }
@@ -69,7 +70,7 @@ class ProductoController extends Controller
             'precio' => $precio,
             'stock' => $stock,
             'descripcion' => $descripcion,
-            'proveedor' => $proveedor,
+            'proveedor_id' => $proveedor,
             'fecha' => $fecha
 
         ]);
@@ -88,11 +89,12 @@ class ProductoController extends Controller
     public function edit(int $id)
     {
         $producto = Producto::find($id);
+        $proveedores = Proveedores::all(['id', 'nombre']);
 
         $dataProducto = [
             'producto' => $producto,
+            'proveedores' => $proveedores
         ];
-
 
         return view('producto.FormEdit', $dataProducto);
     }
@@ -103,7 +105,7 @@ class ProductoController extends Controller
     public function update(Request $request, int $id)
     {
 
-        $producto = Producto::find($id);
+        $producto = Producto::with('proveedores')->find($id);
 
         $request->validate([
             'nombre' => 'required|string|max:255',
@@ -132,12 +134,14 @@ class ProductoController extends Controller
             $producto->imagen = $nombreIMG; // Actualizar el nombre de la imagen
         }
 
+        //->with('proveedores')->get()
+
         // Actualizar los otros campos
         $producto->nombre = $request->input('nombre');
         $producto->precio = $request->input('precio');
         $producto->stock = $request->input('stock');
         $producto->descripcion = $request->input('descripcion');
-        $producto->proveedor = $request->input('proveedor');
+        $producto->proveedor_id = $request->input('proveedor');
         $producto->fecha = $request->input('fecha');
 
         $producto->save(); // actualizar los cambios
@@ -170,7 +174,7 @@ class ProductoController extends Controller
             $query->where('id', $codigo);
         })->when($nombre, function (Builder $query, $nombre) {
             $query->where('nombre', 'like', '%' . $nombre . '%');
-        })->get();
+        });
 
         return $filtro;
     }

@@ -19,8 +19,8 @@ return new class extends Migration
             $table->date('fecha_expedicion')->nullable();
             $table->date('fecha_vencimiento')->nullable();
 
-            $table->foreign('cliente_id')->references('id')->on('clientes')->onDelete('cascade');
-            $table->foreign('usuario_id')->references('id')->on('usuarios')->onDelete('cascade');
+            $table->foreign('cliente_id')->references('id')->on('clientes')->onDelete('restrict');
+            $table->foreign('usuario_id')->references('id')->on('usuarios')->onDelete('restrict');
         });
     }
 

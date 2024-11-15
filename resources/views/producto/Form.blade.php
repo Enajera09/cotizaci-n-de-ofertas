@@ -88,7 +88,7 @@
 
 <script>
     $(document).ready(function() {
-        var data = <?= json_encode($productos) ?>
+        var data = <?= json_encode($proveedores) ?>
 
         const response = data.map((item) => ({
             id: item.id,
