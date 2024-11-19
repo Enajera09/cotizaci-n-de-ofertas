@@ -15,7 +15,7 @@
             aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/pagina/index">Productos</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Agregar</li>
+                <li class="breadcrumb-item {{ Request::is('pagina/form') ? 'active' : '' }}" aria-current="page">Agregar</li>
             </ol>
         </nav>
     </div>
@@ -56,11 +56,7 @@
             <div class="row">
                 <div class="col-md-4 mt-4">
                     <label class="h6" for="proveedor">Proveedor</label>
-                    <select class="form-select form-select mb-3" aria-label=".form-select-lg example" name="proveedor" id="selectProveedor" required>
-                        <option selected="">Seleccionar</option>
-                        <option value="Proveedor 1">Proveedor 1</option>
-                        <option value="Proveedor 2">Proveedor 2</option>
-                        <option value="Proveedor 3">Proveedor 3</option>
+                    <select class="form-select form-select mb-3" aria-label=".form-select-lg example" name="proveedor" id="SelectProveedor" required>
                     </select>
                 </div>
                 <div class="col-md-4 mt-4">
@@ -86,4 +82,27 @@
         </form>
     </div>
 </div>
+@endsection
+
+@section('script-page')
+
+<script>
+    $(document).ready(function() {
+        var data = <?= json_encode($proveedores) ?>
+
+        const response = data.map((item) => ({
+            id: item.id,
+            text: item.nombre
+        }))
+
+        console.log(response);
+
+        $("#SelectProveedor").select2({
+            data: response,
+            placeholder: "Seleccione una opción",
+            allowClear: true
+        })
+    });
+</script>
+
 @endsection

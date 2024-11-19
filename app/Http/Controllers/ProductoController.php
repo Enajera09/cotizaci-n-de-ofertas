@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Producto;
-use Carbon\Carbon;
+use App\Models\Proveedores;
+use Illuminate\Database\Eloquent\Builder;
 
 use function PHPUnit\Framework\fileExists;
 
@@ -13,11 +14,17 @@ class ProductoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $productos = Producto::all();
+
+        $codigo = $request->input('codigo');
+        $nombre = $request->input('nombre');
+
+        $productos = $this->filtroBase($codigo, $nombre)->with('proveedores')->get();
+
         $data = [
-            'productos' => $productos
+            'productos' => $productos,
+
         ];
 
         return view('producto.index', $data);
@@ -28,7 +35,15 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        return view('producto.Form');
+        $productos = Producto::all(['id', 'nombre']);
+        $proveedores = Proveedores::all(['id', 'nombre']);
+
+        $data = [
+            'productos' => $productos,
+            'proveedores' => $proveedores
+        ];
+
+        return view('producto.Form', $data);
     }
 
     /**
@@ -55,7 +70,7 @@ class ProductoController extends Controller
             'precio' => $precio,
             'stock' => $stock,
             'descripcion' => $descripcion,
-            'proveedor' => $proveedor,
+            'proveedor_id' => $proveedor,
             'fecha' => $fecha
 
         ]);
@@ -66,25 +81,72 @@ class ProductoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        //
-    }
+    public function show(string $id) {}
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(int $id)
     {
-        //
+        $producto = Producto::find($id);
+        $proveedores = Proveedores::all(['id', 'nombre']);
+
+        $dataProducto = [
+            'producto' => $producto,
+            'proveedores' => $proveedores
+        ];
+
+        return view('producto.FormEdit', $dataProducto);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, int $id)
     {
-        //
+
+        $producto = Producto::with('proveedores')->find($id);
+
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'precio' => 'required|numeric',
+            'stock' => 'required|integer',
+            'descripcion' => 'nullable|string',
+            'proveedor' => 'nullable|string',
+            'fecha' => 'required|date',
+            'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        if ($request->hasFile('imagen')) {
+
+            // Elimina la imagen anterior, siempre y cuando exista.
+            $imagenRuta = public_path('productosIMG/' . $producto->imagen);
+            if (file_exists($imagenRuta)) {
+                unlink($imagenRuta);
+            }
+
+            // Se vuelve a cargar la imagen en nuestra ruta de imagenes
+            $imagen = $request->file('imagen');
+            $nombreIMG = time() . '.' . $imagen->getClientOriginalExtension();
+            $destino = public_path('productosIMG');
+            $imagen->move($destino, $nombreIMG);
+
+            $producto->imagen = $nombreIMG; // Actualizar el nombre de la imagen
+        }
+
+        //->with('proveedores')->get()
+
+        // Actualizar los otros campos
+        $producto->nombre = $request->input('nombre');
+        $producto->precio = $request->input('precio');
+        $producto->stock = $request->input('stock');
+        $producto->descripcion = $request->input('descripcion');
+        $producto->proveedor_id = $request->input('proveedor');
+        $producto->fecha = $request->input('fecha');
+
+        $producto->save(); // actualizar los cambios
+
+        return redirect()->to('pagina/actualizarProducto/' . $producto->id . "/edit")->with('mensaje', 'Producto actualizado');
     }
 
     /**
@@ -103,5 +165,17 @@ class ProductoController extends Controller
         $producto->delete();
 
         return redirect()->to('pagina/index')->with('delete', 'Producto eliminado con éxito');
+    }
+
+
+    private function filtroBase($codigo, $nombre)
+    {
+        $filtro = Producto::when($codigo, function (Builder $query, $codigo) {
+            $query->where('id', $codigo);
+        })->when($nombre, function (Builder $query, $nombre) {
+            $query->where('nombre', 'like', '%' . $nombre . '%');
+        });
+
+        return $filtro;
     }
 }
