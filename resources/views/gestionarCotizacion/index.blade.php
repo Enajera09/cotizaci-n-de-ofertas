@@ -49,6 +49,21 @@
             <br><br>
             <div id="resultados" class='col-md-12'></div><!-- Carga los datos ajax -->
 
+            <table class="table table-bordered mt-3">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Subtotal</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla-productos">
+                    <!-- Aquí se agregarán los productos dinámicamente -->
+                </tbody>
+            </table>
+
             <!-- Modal -->
             <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
@@ -151,51 +166,49 @@
 </script>
 <script>
     function agregar(id) {
-        var precio_venta = document.getElementById('precio_venta_').value;
+        var precioVenta = document.getElementById('precio_venta_').value;
         var cantidad = document.getElementById('cantidad_').value;
+        var producto = "Producto " + id; // Puedes obtener el nombre del producto desde tu base de datos o una variable.
 
-
-        //Inicia validacion
-        if (isNaN(cantidad)) {
-            alert('Esto no es un numero');
-            document.getElementById('cantidad_' + id).focus();
-            return false;
+        // Validaciones
+        if (isNaN(cantidad) || cantidad <= 0) {
+            alert('Por favor, introduce una cantidad válida.');
+            return;
         }
-        if (isNaN(precio_venta)) {
-            alert('Esto no es un numero');
-            document.getElementById('precio_venta_' + id).focus();
-            return false;
+        if (isNaN(precioVenta) || precioVenta <= 0) {
+            alert('Por favor, introduce un precio válido.');
+            return;
         }
-        //Fin validacion
 
-        $.ajax({
-            type: "POST",
-            url: "./ajax/agregar_cotizador.php",
-            data: "id=" + id + "&precio_venta=" + precio_venta + "&cantidad=" + cantidad,
-            beforeSend: function(objeto) {
-                $("#resultados").html("Mensaje: Cargando...");
-            },
-            success: function(datos) {
-                $("#resultados").html(datos);
-            }
-        });
+        // Calcular subtotal
+        var subtotal = (precioVenta * cantidad).toFixed(2);
+
+        // Construir nueva fila
+        var nuevaFila = `
+        <tr id="fila-${id}">
+            <td>${producto}</td>
+            <td>${precioVenta}</td>
+            <td>${cantidad}</td>
+            <td>${subtotal}</td>
+            <td>
+                <button class="btn btn-danger btn-sm" onclick="eliminarFila(${id})">
+                    <i class="bi bi-trash"></i> Eliminar
+                </button>
+            </td>
+        </tr>
+    `;
+
+        // Agregar fila a la tabla
+        $("#tabla-productos").append(nuevaFila);
+
+        
     }
 
-    function eliminar(id) {
-
-        $.ajax({
-            type: "GET",
-            url: "./ajax/agregar_cotizador.php",
-            data: "id=" + id,
-            beforeSend: function(objeto) {
-                $("#resultados").html("Mensaje: Cargando...");
-            },
-            success: function(datos) {
-                $("#resultados").html(datos);
-            }
-        });
-
+    function eliminarFila(id) {
+        // Eliminar la fila por ID
+        $(`#fila-${id}`).remove();
     }
+
 
     $("#datos_cotizacion").submit(function() {
         var atencion = $("#atencion").val();
