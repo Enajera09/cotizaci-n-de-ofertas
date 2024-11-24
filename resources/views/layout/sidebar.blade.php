@@ -106,7 +106,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href=" /pagina/index">
+                    <a class="nav-link {{ Request::is('cliente/index') ? 'active' : '' }}" " href=" /cliente/index">
                         <i class="bi bi-people-fill">
                             <span class="item-name">Clientes</span>
                         </i>
@@ -114,7 +114,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href=" /pagina/index">
+                    <a class="nav-link {{ Request::is('cotizaciones/index') ? 'active' : '' }}" " href=" /cotizaciones/index">
                         <i class="bi bi-book-half">
                             <span class="item-name">Cotizaciones</span>
                         </i>
