@@ -10,7 +10,10 @@ class CotizacionesDetalle extends Model
 {
     use HasFactory;
 
+    protected $table = 'cotizaciones_detalle';
 
+    protected $fillable = ['cotizacion_id', 'producto_id', 'cantidad', 'valor_unitario','total',];
+    public $timestamps = false;
 
     public function cotizaciones(): BelongsTo
     {

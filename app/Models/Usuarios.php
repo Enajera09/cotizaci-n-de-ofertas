@@ -13,21 +13,30 @@ class Usuarios extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    protected $table = 'usuarios';
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'nombre',
+         'email', 
+         'rol_id', 
+         'password',
+         'remember_token',
+         'created_at',
+         'update_at',
     ];
 
 
     public function roles(): BelongsTo
     {
         return $this->belongsTo(Roles::class, 'rol_id');
+    }
+    public function cotizaciones()
+    {
+        return $this->hasMany(Cotizacion::class, 'usuario_id');
     }
 
     /**
