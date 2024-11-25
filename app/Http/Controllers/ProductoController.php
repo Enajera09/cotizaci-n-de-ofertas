@@ -22,6 +22,7 @@ class ProductoController extends Controller
 
         $productos = $this->filtroBase($codigo, $nombre)->with('proveedores')->get();
 
+
         $data = [
             'productos' => $productos,
 
