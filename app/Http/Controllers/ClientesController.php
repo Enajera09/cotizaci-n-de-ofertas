@@ -6,6 +6,7 @@ use App\Models\Clientes;
 use Illuminate\Http\Request;
 use App\Models\Cotizaciones;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\DB;
 
 use function PHPUnit\Framework\fileExists;
 
@@ -16,12 +17,12 @@ class ClientesController extends Controller
      */
     public function index(Request $request)
     {
+         // Llamar al procedimiento almacenado para obtener ventas por cliente
+    
         $id = $request->input('id');
         $nombre = $request->input('nombre');
 
         $clientes = $this->filtroBase($id, $nombre)->get();
-
-
         $data = [
             'clientes' => $clientes,
 
@@ -49,19 +50,24 @@ class ClientesController extends Controller
      */
     public function store(Request $request)
     {
-        $nombre = $request->input('nombre');
-        $direccion = $request->input('direccion');
-        $telefono = $request->input('telefono');
-        $email = $request->input('email');
-
-        Clientes::create([
-            'nombre' => $nombre,
-            'direccion' => $direccion,
-            'telefono' => $telefono,
-            'email' => $email
-        ]);
+        $request->validate([
+        $nombre = $request->input('nombre'),
+        $direccion = $request->input('direccion'),
+        $telefono = $request->input('telefono'),
+        $email = $request->input('email'),
+    ]);
+    try {
+        DB::statement('CALL agregar_cliente(?, ?, ?, ?)', [$nombre, $direccion, $telefono, $email]);
 
         return redirect()->to('/cliente/form')->with('mensaje', 'Cliente agregado');
+
+    } catch (\Illuminate\Database\QueryException $e) {
+        if ($e->errorInfo[1] == 1062) { // Código de error para duplicados
+            return redirect()->back()->with('error', 'Error: El correo electrónico ya está registrado.');
+        }
+        // Manejo de excepción general
+        return redirect()->back()->with('error', 'Error al agregar el cliente. Inténtalo de nuevo.');
+    }
     }
 
     /**
