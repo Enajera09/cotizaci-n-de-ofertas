@@ -100,11 +100,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            @if(session('error'))
-                            <div class="alert alert-danger">
-                                {{ session('error') }}
-                            </div>
-                            @endif
+                                @if(session('error'))
+                                <div class="alert alert-danger">
+                                    {{ session('error') }}
+                                </div>
+                                @endif
                                 @foreach ($clientes as $cliente)
                                 <tr>
                                     <td>{{$cliente->id}}</td>
