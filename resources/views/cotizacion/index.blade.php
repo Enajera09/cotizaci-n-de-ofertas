@@ -105,9 +105,11 @@
                                     <td>{{ $cotizacion->id}}</td>
                                     <td>{{ $cotizacion->clientes->nombre}}</td>
                                     <td>{{ $cotizacion->forma_pago}}</td>
-                                    <td>{{ $cotizacion->fecha_expedicion}}</td> 
-                                    <td>{{ $cotizacion->fecha_vencimiento}}</td> 
+                                    <td>{{ $cotizacion->fecha_expedicion}}</td>
+                                    <td>{{ $cotizacion->fecha_vencimiento}}</td>
                                     <td>
+                                        <a class="bi bi-eye-fill" href="/inicio/index/{{$cotizacion->id}}" title="Ver" style="font-size: 1.5rem; color: green"></a>
+
                                         <a class="bi bi-pencil-fill" href="actualizarCotizacion/{{$cotizacion->id}}/edit" title="Editar" style="font-size: 1.5rem;"></a>
 
                                         <!-- Botón para abrir el modal de confirmación -->

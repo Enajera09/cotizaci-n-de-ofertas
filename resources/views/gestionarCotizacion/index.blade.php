@@ -6,32 +6,29 @@
 <div class="container">
     <div class="row-fluid">
         <div class="col-md-12">
-            <h2><span class="glyphicon glyphicon-edit"></span> Nueva Cotización</h2>
+            <h2><span class="glyphicon glyphicon-edit"></span> Gestionar Cotización</h2>
             <hr>
             <form class="form-horizontal" role="form" id="datos_cotizacion">
                 <div class="form-group row">
-                    <label for="atencion" class="col-md-1 control-label">Atención:</label>
+                    <label for="atencion" class="col-md-1 control-label">Cliente:</label>
                     <div class="col-md-3">
-                        <input type="text" class="form-control" id="atencion" placeholder="Atención" required>
+                        <input type="text" class="form-control" id="cliente" placeholder="{{$cotizacion->clientes->nombre}}" disabled>
                     </div>
-                    <label for="tel1" class="col-md-1 control-label">Teléfono:</label>
+                    <label for="tel1" class="col-md-1 control-label">Usuario:</label>
                     <div class="col-md-2">
-                        <input type="text" class="form-control" id="tel1" placeholder="Teléfono" required>
+                        <input type="text" class="form-control" id="usuario" placeholder="{{$cotizacion->usuarios->nombre}}" disabled>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="empresa" class="col-md-1 control-label">Empresa:</label>
+                    <label for="empresa" class="col-md-1 control-label">Forma de pago</label>
                     <div class="col-md-3">
-                        <input type="text" class="form-control" id="empresa" placeholder="Nombre de la empresa">
+                        <input type="text" class="form-control" id="FormaPago" placeholder="{{$cotizacion->forma_pago}}" disabled>
                     </div>
-                    <label for="tel2" class="col-md-1 control-label">Teléfono:</label>
+                    <label for="tel2" class="col-md-1 control-label">Fecha de vencimiento</label>
                     <div class="col-md-2">
-                        <input type="text" class="form-control" id="tel2" placeholder="Teléfono empresa">
+                        <input type="text" class="form-control" id="FechaVencimiento" placeholder="{{$cotizacion->fecha_vencimiento}}" disabled>
                     </div>
-                    <label for="email" class="col-md-1 control-label">Email:</label>
-                    <div class="col-md-3">
-                        <input type="email" class="form-control" id="email" placeholder="Email">
-                    </div>
+                
                 </div>
 
 
@@ -201,7 +198,7 @@
         // Agregar fila a la tabla
         $("#tabla-productos").append(nuevaFila);
 
-        
+
     }
 
     function eliminarFila(id) {

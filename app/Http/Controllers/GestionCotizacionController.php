@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cotizaciones;
 use Illuminate\Http\Request;
 
 class GestionCotizacionController extends Controller
@@ -9,10 +10,17 @@ class GestionCotizacionController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(int $id)
     {
+        $cotizacion = Cotizaciones::with(['clientes', 'usuarios'])->find($id);
 
-        return view('gestionarCotizacion.index');
+
+        $dataCotizaciones = [
+            'cotizacion' => $cotizacion,
+
+        ];
+
+        return view('gestionarCotizacion.index', $dataCotizaciones);
     }
 
     /**

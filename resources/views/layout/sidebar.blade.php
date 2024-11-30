@@ -68,12 +68,11 @@
                         <i class="bi bi-person-fill-gear">
                             <span class="item-name">Roles</span>
                         </i>
-
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::is('inicio/index') ? 'active' : '' }}" aria-current="page" href="/inicio/index">
+                    <a class="nav-link disabled" aria-current="page" href="/inicio/index">
                         <i class="bi bi-clipboard2-fill">
                             <span class="item-name">Gestionar cotización</span>
                         </i>

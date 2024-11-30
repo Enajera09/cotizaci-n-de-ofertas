@@ -23,7 +23,8 @@ Route::get('/', function () {
 });
 
 Route::prefix('inicio')->group(function () {
-    Route::get('index', [GestionCotizacionController::class, 'index']);
+    Route::get('index/{id}', [GestionCotizacionController::class, 'index']);
+    
 });
 
 
