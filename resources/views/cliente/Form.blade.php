@@ -4,12 +4,17 @@
 @include('layout.nav')
 
 <div class="card mt-4">
-    @if (session('mensaje'))
-    <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+@if(session('mensaje'))
+    <div class="alert alert-success">
         {{ session('mensaje') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
-    @endif
+@endif
+
+@if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
     <div class="bd-example ms-2">
         <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);"
             aria-label="breadcrumb">
@@ -25,6 +30,7 @@
         </div>
     </div>
     <div class="card-body">
+
         <form action="crearCliente" method="post" enctype="multipart/form-data">
             @csrf
             <div class="row">
@@ -67,3 +73,4 @@
     </div>
 </div>
 @endsection
+

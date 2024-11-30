@@ -10,6 +10,7 @@ use App\Models\Producto;
 use App\Models\Proveedores;
 use App\Models\Usuarios;
 use Illuminate\Database\Eloquent\Builder;
+use App\Models\VistaResumenCotizaciones;
 
 class CotizacionesController extends Controller
 {
@@ -18,10 +19,10 @@ class CotizacionesController extends Controller
      */
     public function index(Request $request)
     {
-        $cliente_id = $request->input('cliente_id');
+        $clientes = $request->input('clientes');
         $fecha_expedicion = $request->input('fecha_expedicion');
 
-        $cotizaciones = $this->filtroBase($cliente_id, $fecha_expedicion)->get();
+        $cotizaciones = $this->filtroBase($clientes, $fecha_expedicion)->get();
 
         $data = [
             'cotizaciones' => $cotizaciones,
@@ -145,14 +146,14 @@ class CotizacionesController extends Controller
         return redirect()->to('cotizaciones/index')->with('delete', 'Cotización eliminada exitosamente');
     }
 
-    private function filtroBase($cliente_id, $fecha_expedicion)
+    private function filtroBase($clientes, $fecha_expedicion)
     {
-        $filtro = Cotizaciones::when($cliente_id, function (Builder $query, $cliente_id) {
-            $query->where('cliente_id', $cliente_id);
+        $filtro = VistaResumenCotizaciones::when($clientes, function (Builder $query, $clientes) {
+            $query->where('clientes', 'like', '%' . $clientes . '%');
         })->when($fecha_expedicion, function (Builder $query, $fecha_expedicion) {
             $query->whereDate('fecha_expedicion', $fecha_expedicion);
         });
-
         return $filtro;
     }
+
 }

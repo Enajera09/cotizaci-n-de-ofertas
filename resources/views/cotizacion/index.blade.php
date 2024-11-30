@@ -46,12 +46,12 @@
                 <form action="index" method="get" id="filter-form">
                     <div class="row mb-3">
                         <div class="col">
-                            <label>Cliente Id</label>
-                            <input type="text" class="form-control" name="cliente_id" placeholder="ClienteId">
+                            <label for="clientes">Cliente</label>
+                            <input type="text" class="form-control" id="clientes" name="clientes" placeholder="Cliente">
                         </div>
                         <div class="col">
-                            <label>Fecha Expedicion</label>
-                            <input type="date" class="form-control" id="fecha_expedicion" name="fecha_expedicion" placeholder="Fecha Desde" value="{{ request('fecha_expedicion') }}">
+                            <label for="fecha_expedicion">Fecha Expedicion</label>
+                            <input type="date" class="form-control" id="fecha_expedicion" name="fecha_expedicion" placeholder="Fecha Desde">
                         </div>
                     </div>
                     <div class="text-end mb-3">
@@ -96,6 +96,7 @@
                                     <th>Forma de Pago</th>
                                     <th>Fecha Expedición</th>
                                     <th>Fecha Vencimiento</th>
+                                    <th>Total Cotización</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
@@ -103,8 +104,11 @@
                                 @foreach ($cotizaciones as $cotizacion )
                                 <tr>
                                     <td>{{ $cotizacion->id}}</td>
-                                    <td>{{ $cotizacion->clientes->nombre}}</td>
+                                    <td>{{ $cotizacion->clientes}}</td>
                                     <td>{{ $cotizacion->forma_pago}}</td>
+                                    <td>{{ $cotizacion->fecha_expedicion}}</td> 
+                                    <td>{{ $cotizacion->fecha_vencimiento}}</td> 
+                                    <td>{{ $cotizacion->TotalCotizacion }}</td>
                                     <td>{{ $cotizacion->fecha_expedicion}}</td>
                                     <td>{{ $cotizacion->fecha_vencimiento}}</td>
                                     <td>

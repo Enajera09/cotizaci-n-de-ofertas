@@ -113,6 +113,7 @@
                                     <td>{{$cliente->telefono}}</td>
                                     <td>{{$cliente->email}}</td>
                                     <td>
+                                    
                                         <a class="bi bi-pencil-fill" href="actualizarCliente/{{$cliente->id}}/edit" title="Editar" style="font-size: 1.5rem;"></a>
 
                                         <!-- Botón para abrir el modal de confirmación -->
