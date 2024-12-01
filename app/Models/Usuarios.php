@@ -21,8 +21,8 @@ class Usuarios extends Authenticatable
      */
     protected $fillable = [
         'nombre',
-         'email', 
-         'rol_id', 
+         'email',
+         'rol_id',
          'password',
          'remember_token',
          'created_at',
@@ -33,10 +33,6 @@ class Usuarios extends Authenticatable
     public function roles(): BelongsTo
     {
         return $this->belongsTo(Roles::class, 'rol_id');
-    }
-    public function cotizaciones()
-    {
-        return $this->hasMany(Cotizacion::class, 'usuario_id');
     }
 
     /**

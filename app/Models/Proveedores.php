@@ -13,6 +13,7 @@ class Proveedores extends Model
     protected $table = 'proveedores';
 
     protected $fillable = ['nombre', 'direccion', 'telefono', 'email',];
+    public $timestamps = false;
 
 
     public function productos(): HasMany
