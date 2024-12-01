@@ -25,13 +25,13 @@
                         <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);"
                             aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item {{ Request::is('cotizaciones/index') ? 'active' : '' }}" aria-current="page">Cotización</li>
-                                <li class="breadcrumb-item"><a href="/cotizaciones/form">Agregar</a></li>
+                                <li class="breadcrumb-item {{ Request::is('usuarios/index') ? 'active' : '' }}" aria-current="page">usuarios</li>
+                                <li class="breadcrumb-item"><a href="/usuarios/form">Agregar</a></li>
                             </ol>
                         </nav>
                     </div>
 
-                    <a href="/cotizaciones/form" class="btn btn-primary ms-auto btn-sm align-items-center">
+                    <a href="/usuarios/form" class="btn btn-primary ms-auto btn-sm align-items-center">
                         <svg class="icon-22 me-2" width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M14.7366 2.76175H8.08455C6.00455 2.75375 4.29955 4.41075 4.25055 6.49075V17.3397C4.21555 19.3897 5.84855 21.0807 7.89955 21.1167C7.96055 21.1167 8.02255 21.1167 8.08455 21.1147H16.0726C18.1416 21.0937 19.8056 19.4087 19.8026 17.3397V8.03975L14.7366 2.76175Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                             <path d="M14.4741 2.75V5.659C14.4741 7.079 15.6231 8.23 17.0431 8.234H19.7971" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -45,13 +45,9 @@
 
                 <form action="index" method="get" id="filter-form">
                     <div class="row mb-3">
-                        <div class="col">
-                            <label>Cliente Id</label>
-                            <input type="text" class="form-control" name="cliente_id" placeholder="ClienteId">
-                        </div>
-                        <div class="col">
-                            <label>Fecha Expedicion</label>
-                            <input type="date" class="form-control" id="fecha_expedicion" name="fecha_expedicion" placeholder="Fecha Desde" value="{{ request('fecha_expedicion') }}">
+                        <div class="col-md-3">
+                            <label>Nombre</label>
+                            <input type="text" class="form-control" name="nombre" placeholder="Nombre del usuario">
                         </div>
                     </div>
                     <div class="text-end mb-3">
@@ -78,7 +74,7 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <div class="header-title">
-                        <h4 class="card-title">Cotizaciones</h4>
+                        <h4 class="card-title">usuarios</h4>
                     </div>
                     <button type="button" class="btn btn-outline-info"> <svg class="icon-26 me-2" width="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M7.666 21.25H16.335C19.355 21.25 21.25 19.111 21.25 16.084V7.916C21.25 4.889 19.365 2.75 16.335 2.75H7.666C4.636 2.75 2.75 4.889 2.75 7.916V16.084C2.75 19.111 4.636 21.25 7.666 21.25Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -91,43 +87,42 @@
                         <table id="basic-table" class="table table-striped mb-0" role="grid">
                             <thead>
                                 <tr>
-                                    <th>ID de Cotización</th>
-                                    <th>Cliente</th>
-                                    <th>Forma de Pago</th>
-                                    <th>Fecha Expedición</th>
-                                    <th>Fecha Vencimiento</th>
-                                    <th>Acciones</th>
+                                    <th>ID Usuario</th>
+                                    <th>Nombre</th>
+                                    <th>Email</th>
+                                    <th>Rol</th>
+                                    <th>Fecha de expedición</th>
+                                    <th>Fecha de actualización</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($cotizaciones as $cotizacion )
+                                @foreach ($usuarios as $usuario )
                                 <tr>
-                                    <td>{{ $cotizacion->id}}</td>
-                                    <td>{{ $cotizacion->clientes->nombre}}</td>
-                                    <td>{{ $cotizacion->forma_pago}}</td>
-                                    <td>{{ $cotizacion->fecha_expedicion}}</td>
-                                    <td>{{ $cotizacion->fecha_vencimiento}}</td>
+                                    <td>{{$usuario->id}}</td>
+                                    <td>{{$usuario->nombre}}</td>
+                                    <td>{{$usuario->email}}</td>
+                                    <td>{{$usuario->roles->nombre ?? 'Sin rol asignado'}}</td>
+                                    <td>{{$usuario->created_at}}</td>
+                                    <td>{{$usuario->updated_at}}</td>
                                     <td>
-                                        <a class="bi bi-eye-fill" href="/inicio/index/{{$cotizacion->id}}" title="Ver" style="font-size: 1.5rem; color: green"></a>
-
-                                        <a class="bi bi-pencil-fill" href="actualizarCotizacion/{{$cotizacion->id}}/edit" title="Editar" style="font-size: 1.5rem;"></a>
+                                        <a class="bi bi-pencil-fill" href="actualizarUsuario/{{$usuario->id}}/edit" title="Editar" style="font-size: 1.5rem;"></a>
 
                                         <!-- Botón para abrir el modal de confirmación -->
-                                        <a class="bi bi-trash3-fill text-danger" href="" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal{{ $cotizacion->id }}" style="font-size: 1.5rem;" title="Eliminar"></a>
+                                        <a class="bi bi-trash3-fill text-danger" href="" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal{{ $usuario->id }}" style="font-size: 1.5rem;" title="Eliminar"></a>
 
-                                        <!-- Modal de Confirmación para cada cotizacion -->
-                                        <div class="modal fade" id="confirmDeleteModal{{ $cotizacion->id }}" tabindex="-1" aria-labelledby="confirmDeleteModalLabel{{ $cotizacion->id }}" aria-hidden="true">
+                                        <!-- Modal de Confirmación para cada usuario -->
+                                        <div class="modal fade" id="confirmDeleteModal{{ $usuario->id }}" tabindex="-1" aria-labelledby="confirmDeleteModalLabel{{ $usuario->id }}" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="confirmDeleteModalLabel{{ $cotizacion->id }}">Confirmar Eliminación</h5>
+                                                        <h5 class="modal-title" id="confirmDeleteModalLabel{{ $usuario->id }}">Confirmar Eliminación</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        ¿Estás seguro de que deseas eliminar esta cotización?
+                                                        ¿Estás seguro de que deseas eliminar este usuario?
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <form method="post" action="eliminarCotizacion/{{$cotizacion->id}}">
+                                                        <form method="post" action="eliminarUsuario/{{$usuario->id}}">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="btn btn-danger">Eliminar</button>

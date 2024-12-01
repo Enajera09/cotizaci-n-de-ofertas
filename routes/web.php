@@ -5,6 +5,8 @@ use App\Http\Controllers\ProductoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\CotizacionesController;
+use App\Http\Controllers\ProveedorController;
+use App\Http\Controllers\UsuarioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,4 +53,20 @@ Route::prefix('cotizaciones')->group(function () {
     Route::post('crearCotizacion', [CotizacionesController::class, 'store']);
     Route::put('actualizarCotizacion/{id}', [CotizacionesController::class, 'update']);
     Route::delete('eliminarCotizacion/{id}', [CotizacionesController::class, 'destroy']);
+});
+Route::prefix('proveedores')->group(function () {
+    Route::get('index', [ProveedorController::class, 'index']);
+    Route::get('form', [ProveedorController::class, 'create']);
+    Route::get('actualizarProveedor/{id}/edit', [ProveedorController::class, 'edit']);
+    Route::post('crearProveedor', [ProveedorController::class, 'store']);
+    Route::put('actualizarProveedor/{id}', [ProveedorController::class, 'update']);
+    Route::delete('eliminarProveedor/{id}', [ProveedorController::class, 'destroy']);
+});
+Route::prefix('usuarios')->group(function () {
+    Route::get('index', [UsuarioController::class, 'index']);
+    Route::get('form', [UsuarioController::class, 'create']);
+    Route::get('actualizarUsuario/{id}/edit', [UsuarioController::class, 'edit']);
+    Route::post('crearUsuario', [UsuarioController::class, 'store']);
+    Route::put('actualizarUsuario/{id}', [UsuarioController::class, 'update']);
+    Route::delete('eliminarUsuario/{id}', [UsuarioController::class, 'destroy']);
 });

@@ -85,7 +85,7 @@ class CotizacionesController extends Controller
         $cotizaciones = Cotizaciones::find($id);
         $clientes = Clientes::all(['id', 'nombre']);
         $usuarios = Usuarios::all(['id', 'nombre']);
-        
+
         $data = [
             'cotizaciones' => $cotizaciones,
             'clientes' => $clientes,
@@ -105,7 +105,7 @@ class CotizacionesController extends Controller
         if (!$cotizacion) {
             return redirect()->back()->with('error', 'Cotización no encontrada.');
         }
-        
+
         $request->validate([
             'cliente_id' => 'required|exists:clientes,id',
             'usuario_id' => 'required|exists:usuarios,id',

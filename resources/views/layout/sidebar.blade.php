@@ -55,7 +55,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " aria-current="page" href="" target="_blank">
+                    <a class="nav-link"{{ Request::is('usuarios/index') ? 'active' : '' }}" " href=" /usuarios/index">
                         <i class="bi bi-person-fill">
                             <span class="item-name">Usuarios</span>
                         </i>
@@ -97,7 +97,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href=" /pagina/index">
+                    <a class="nav-link"{{ Request::is('proveedores/index') ? 'active' : '' }}" " href=" /proveedores/index">
                         <i class="bi bi-truck-front-fill">
                             <span class="item-name">Proveedores</span>
                         </i>
