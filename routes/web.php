@@ -24,9 +24,8 @@ Route::get('/', function () {
 
 Route::prefix('inicio')->group(function () {
     Route::get('index/{id}', [GestionCotizacionController::class, 'index']);
-    
-});
 
+});
 
 Route::prefix('pagina')->group(function () {
     Route::get('index', [ProductoController::class, 'index']);
@@ -36,6 +35,7 @@ Route::prefix('pagina')->group(function () {
     Route::put('actualizarProducto/{id}', [ProductoController::class, 'update']);
     Route::delete('eliminarProducto/{id}', [ProductoController::class, 'destroy']);
 });
+
 Route::prefix('cliente')->group(function () {
     Route::get('index', [ClientesController::class, 'index']);
     Route::get('form', [ClientesController::class, 'create']);
@@ -44,6 +44,7 @@ Route::prefix('cliente')->group(function () {
     Route::put('actualizarCliente/{id}', [ClientesController::class, 'update']);
     Route::delete('eliminarCliente/{id}', [ClientesController::class, 'destroy']);
 });
+
 Route::prefix('cotizaciones')->group(function () {
     Route::get('index', [CotizacionesController::class, 'index']);
     Route::get('form', [CotizacionesController::class, 'create']);
