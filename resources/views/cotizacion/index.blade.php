@@ -80,11 +80,11 @@
                     <div class="header-title">
                         <h4 class="card-title">Cotizaciones</h4>
                     </div>
-                    <button type="button" class="btn btn-outline-info"> <svg class="icon-26 me-2" width="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- <button type="button" class="btn btn-outline-info"> <svg class="icon-26 me-2" width="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M7.666 21.25H16.335C19.355 21.25 21.25 19.111 21.25 16.084V7.916C21.25 4.889 19.365 2.75 16.335 2.75H7.666C4.636 2.75 2.75 4.889 2.75 7.916V16.084C2.75 19.111 4.636 21.25 7.666 21.25Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                             <path d="M12 16.0861V7.91406" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                             <path d="M15.748 12.3223L12 16.0863L8.25195 12.3223" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                        </svg> Exportar</button>
+                        </svg> Exportar</button> -->
                 </div>
                 <div class="card-body p-0">
                     <div class="table-responsive mt-4">
@@ -96,7 +96,6 @@
                                     <th>Forma de Pago</th>
                                     <th>Fecha Expedición</th>
                                     <th>Fecha Vencimiento</th>
-                                    <th>Total Cotización</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
@@ -108,9 +107,7 @@
                                     <td>{{ $cotizacion->forma_pago}}</td>
                                     <td>{{ $cotizacion->fecha_expedicion}}</td> 
                                     <td>{{ $cotizacion->fecha_vencimiento}}</td> 
-                                    <td>{{ $cotizacion->TotalCotizacion }}</td>
-                                    <td>{{ $cotizacion->fecha_expedicion}}</td>
-                                    <td>{{ $cotizacion->fecha_vencimiento}}</td>
+                                    
                                     <td>
                                         <a class="bi bi-eye-fill" href="/inicio/index/{{$cotizacion->id}}" title="Ver" style="font-size: 1.5rem; color: green"></a>
 

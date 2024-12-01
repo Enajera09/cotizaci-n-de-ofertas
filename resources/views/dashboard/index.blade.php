@@ -4,113 +4,13 @@
 @include('layout.nav')
 
 <h2 class="mt-4">
-    <center>Datos generales prueba</center>
+    <center>Datos generales</center>
 </h2>
 <div class="row mt-4">
-    <div class="col-lg-3 col-md-6">
-        <div class="card">
-            <div class="card-body">
-                <div class="text-center">AVG Impressions</div>
-                <div class="d-flex align-items-center justify-content-between mt-3">
-                    <div>
-                        <h2 class="counter">2.648</h2>
-                        26.84%
-                    </div>
-                    <div class="border  bg-soft-danger rounded p-3">
-                        <svg class="icon-20" xmlns="http://www.w3.org/2000/svg" width="20px" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                        </svg>
-                    </div>
-                </div>
-                <div class="mt-4">
-                    <div class="progress bg-soft-danger shadow-none w-100" style="height: 6px">
-                        <div class="progress-bar bg-danger" data-toggle="progress-bar" role="progressbar"
-                            aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-6">
-        <div class="card">
-            <div class="card-body">
-                <div class="text-center">AVG Engagements Rate</div>
-                <div class="d-flex align-items-center justify-content-between mt-3">
-                    <div>
-                        <h2 class="counter">2.648</h2>
-                        26.84%
-                    </div>
-                    <div class="border bg-soft-info rounded p-3">
-                        <svg class="icon-20" xmlns="http://www.w3.org/2000/svg" width="20px" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M5 10l7-7m0 0l7 7m-7-7v18" />
-                        </svg>
-                    </div>
-                </div>
-                <div class="mt-4">
-                    <div class="progress bg-soft-info shadow-none w-100" style="height: 6px">
-                        <div class="progress-bar bg-info" data-toggle="progress-bar" role="progressbar"
-                            aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-6">
-        <div class="card">
-            <div class="card-body">
-                <div class="text-center">AVG Reach</div>
-                <div class="d-flex align-items-center justify-content-between mt-3">
-                    <div>
-                        <h2 class="counter">2.648</h2>
-                        26.84%
-                    </div>
-                    <div class="border bg-soft-success rounded p-3">
-                        <svg class="icon-20" xmlns="http://www.w3.org/2000/svg" width="20px" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M5 10l7-7m0 0l7 7m-7-7v18" />
-                        </svg>
-                    </div>
-                </div>
-                <div class="mt-4">
-                    <div class="progress bg-soft-success shadow-none w-100" style="height: 6px">
-                        <div class="progress-bar bg-success" data-toggle="progress-bar" role="progressbar"
-                            aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-6">
-        <div class="card">
-            <div class="card-body">
-                <div class="text-center">AVG Transport</div>
-                <div class="d-flex align-items-center justify-content-between mt-3">
-                    <div>
-                        <h2 class="counter">2.648</h2>
-                        26.84%
-                    </div>
-                    <div class="border  bg-soft-primary rounded p-3">
-                        <svg class="icon-20" xmlns="http://www.w3.org/2000/svg" width="20px" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M5 10l7-7m0 0l7 7m-7-7v18" />
-                        </svg>
-                    </div>
-                </div>
-                <div class="mt-4">
-                    <div class="progress bg-soft-primary shadow-none w-100" style="height: 6px">
-                        <div class="progress-bar bg-primary" data-toggle="progress-bar" role="progressbar"
-                            aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+   
+    
+ 
+   
     <div class="col-lg-3 col-md-6">
         <div class="card bg-soft-info">
             <div class="card-body">
@@ -123,8 +23,8 @@
                         </svg>
                     </div>
                     <div class="text-end">
-                        <h2 class="counter">5600</h2>
-                        Doctors
+                        <h2 class="counter">150</h2>
+                        Productos
                     </div>
                 </div>
             </div>
@@ -142,8 +42,8 @@
                         </svg>
                     </div>
                     <div class="text-end">
-                        <h2 class="counter">5600</h2>
-                        Nurses
+                        <h2 class="counter">30</h2>
+                        Proveedores
                     </div>
                 </div>
             </div>
@@ -161,8 +61,8 @@
                         </svg>
                     </div>
                     <div class="text-end">
-                        <h2 class="counter">3500</h2>
-                        Patients
+                        <h2 class="counter">50</h2>
+                        Usuarios
                     </div>
                 </div>
             </div>
@@ -180,8 +80,8 @@
                         </svg>
                     </div>
                     <div class="text-end">
-                        <h2 class="counter">4500</h2>
-                        Pharmacists
+                        <h2 class="counter">100</h2>
+                        Clientes
                     </div>
                 </div>
             </div>
@@ -199,7 +99,7 @@
                         </svg>
                     </div>
                     <div class="text-end">
-                        Customers
+                        Cotizaciones
                         <h2 class="counter">75</h2>
                     </div>
                 </div>
@@ -218,51 +118,14 @@
                         </svg>
                     </div>
                     <div class="text-end">
-                        Products
-                        <h2 class="counter">60</h2>
+                        Roles
+                        <h2 class="counter">3</h2>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-lg-3 col-md-6">
-        <div class="card">
-            <div class="card-body">
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="bg-success text-white rounded p-3">
-                        <svg class="icon-20" xmlns="http://www.w3.org/2000/svg" width="20px" viewBox="0 0 20 20"
-                            fill="currentColor">
-                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                                clip-rule="evenodd" />
-                        </svg>
-                    </div>
-                    <div class="text-end">
-                        User
-                        <h2 class="counter">80</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-6">
-        <div class="card">
-            <div class="card-body">
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="bg-danger text-white rounded p-3">
-                        <svg class="icon-20" xmlns="http://www.w3.org/2000/svg" width="20px" viewBox="0 0 20 20"
-                            fill="currentColor">
-                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                                clip-rule="evenodd" />
-                        </svg>
-                    </div>
-                    <div class="text-end">
-                        Category
-                        <h2 class="counter">45</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+   
 
 </div>
 @endsection

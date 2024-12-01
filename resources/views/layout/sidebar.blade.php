@@ -71,13 +71,14 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link disabled" aria-current="page" href="/inicio/index">
                         <i class="bi bi-clipboard2-fill">
                             <span class="item-name">Gestionar cotización</span>
                         </i>
                     </a>
-                </li>
+                </li> -->
+                
                 <li>
                     <hr class="hr-horizontal">
                 </li>
